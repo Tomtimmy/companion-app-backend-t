@@ -1,0 +1,66 @@
+name: Backend Checks
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  backend_checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint (linting & code quality)
+        run: npx eslint . --max-warnings=0
+
+      - name: Run Jest tests (unit + integration)
+        run: npx jest --coverage --runInBand
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage
+
+      - name: Run Translation & Language Implementation Checks
+        run: npm test -- __tests__/languageGrader.test.js
+
+      - name: Generate coverage badge
+        run: npx jest-coverage-badges --input coverage/lcov.info --output ./coverage/badge.svg
+
+      - name: Update README with badge (if missing)
+        run: |
+          BADGE_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/coverage/badge.svg"
+          if ! grep -q "$BADGE_URL" README.md; then
+            echo -e "\n![Coverage]($BADGE_URL)" >> README.md
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "docs: add coverage badge to README"
+          fi
+
+      - name: Commit coverage badge to repo
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ./coverage/badge.svg
+          git diff --cached --quiet || git commit -m "chore: update coverage badge"
+          git push
