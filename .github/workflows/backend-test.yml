@@ -40,7 +40,7 @@ jobs:
           path: coverage
 
       - name: Run Translation & Language Implementation Checks
-        run: npm test -- __tests__/languageGrader.test.js
+        run: npm test -- functions/__tests__/unit/languageGrader.test.js
 
       - name: Generate coverage badge
         run: npx jest-coverage-badges --input coverage/lcov.info --output ./coverage/badge.svg

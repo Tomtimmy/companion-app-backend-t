@@ -20,7 +20,7 @@ on:
           - maestro-ui
 
 env:
-  FUNCTION_APP_URL: 'https://companion-grader-functions.azurewebsites.net'
+  FUNCTION_APP_URL: 'https://companion-app-backends-functions.azurewebsites.net'
   NODE_VERSION: '18.x'
 
 jobs:
