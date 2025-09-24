@@ -27,21 +27,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # 🔹 Run ESLint via npm script
       - name: Run ESLint (linting & code quality)
-        run: ./node_modules/.bin/eslint . --max-warnings=0
+        run: npm run lint
 
+      # 🔹 Run Jest via npm script
       - name: Run Jest tests (unit + integration)
-        run: npx jest --coverage --runInBand
+        run: npm run test:ci
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
-
         with:
           name: coverage-report
           path: coverage
 
+      # 🔹 Language implementation checks
       - name: Run Translation & Language Implementation Checks
-        run: npm test -- functions/__tests__/unit/languageGrader.test.js
+        run: npm run test:language
 
       - name: Generate coverage badge
         run: npx jest-coverage-badges --input coverage/lcov.info --output ./coverage/badge.svg
