@@ -1,11 +1,13 @@
+// functions/__tests__/integration/powerAutomate.test.js
+
 import axios from "axios";
-import { triggerPowerAutomate } from "../../services/powerAutomate";
+// CORRECTED IMPORT using moduleNameMapper alias
+import { triggerPowerAutomate } from "functions/services/powerAutomate";
 
 jest.mock("axios");
 
 describe("Integration: Power Automate Flow", () => {
   it("should mock a Power Automate webhook call", async () => {
-    // Mock the axios response
     axios.post.mockResolvedValueOnce({
       status: 200,
       data: { success: true },
