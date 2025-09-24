@@ -1,0 +1,29 @@
+{
+  "codeQuality": {
+    "run": true,
+    "minimumScore": 0.8,
+    "checks": {
+      "runLint": true,
+      "runTests": true,
+      "runTypeCheck": false
+    },
+    "weights": {
+      "linting": 30,
+      "tests": 50,
+      "typeCheck": 20
+    }
+  },
+  "componentGrader": {
+    "run": true,
+    "minimumScore": 0.7,
+    "rules": {
+      "checkAccessibilityLabel": true,
+      "checkTestID": true,
+      "checkInlineStyles": true,
+      "checkMissingKeys": true
+    }
+  },
+  "languageGrader": {
+    "run": false
+  }
+}

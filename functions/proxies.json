@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "health-check": {
+      "matchCondition": {
+        "route": "/api/health",
+        "methods": ["GET"]
+      },
+      "responseOverrides": {
+        "response.statusCode": "200",
+        "response.headers.Content-Type": "application/json",
+        "response.body": "{\"status\": \"healthy\", \"timestamp\": \"%datetime:yyyy-MM-ddTHH:mm:ssZ%\", \"service\": \"companion-app-backends\", \"version\": \"1.0.0\"}"
+      }
+    },
+    "dashboard-root": {
+      "matchCondition": {
+        "route": "/",
+        "methods": ["GET"]
+      },
+      "responseOverrides": {
+        "response.statusCode": "200",
+        "response.headers.Content-Type": "text/html",
+        "response.body": "<!DOCTYPE html><html><head><title>Companion Grader API</title><style>body{font-family:Arial,sans-f5f5f5}h1{color:#0078d4}ul{list-style-type:none;padding:0}li{margin:10px 0;padding:10px;background:white;border-radius:5px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}a{text-decoration:none;color:#0078d4;font-weight:bold}</style></head><body><h1>🚀 Companion Grader Functions</h1><p>Welcome to the automated QA grading system for Companion Native App</p><h2>Available Endpoints:</h2><ul><li>📊 <a href=\"/api/languageGrader\">/api/languageGrader</a> - Language Implementation Grader</li><li>🔍 <a href=\"/api/codeQualityGrader\">/api/codeQualityGrader</a> - Code Quality Grader</li><li>🧩 <a href=\"/api/componentGrader\">/api/componentGrader</a> - Component Grader</li><li>❤️ <a href=\"/api/health\">/api/health</a> - Health Check</li></ul><h2>Friendly Aliases:</h2><ul><li>🌐 <a href=\"/grader/language\">/grader/language</a> - Language Grader Alias</li><li>⚡ <a href=\"/grader/quality\">/grader/quality</a> - Quality Grader Alias</li><li>🔧 <a href=\"/grader/components\">/grader/components</a> - Component Grader Alias</li></ul></body></html>"
+      }
+    },
+    "cors-preflight": {
+      "matchCondition": {
+        "route": "/api/{*path}",
+        "methods": ["OPTIONS"]
+      },
+      "responseOverrides": {
+        "response.statusCode": "200",
+        "response.headers.Access-Control-Allow-Origin": "*",
+        "response.headers.Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "response.headers.Access-Control-Allow-Headers": "Content-Type, Authorization, x-functions-key, x-api-key",
+        "response.headers.Access-Control-Max-Age": "86400",
+        "response.headers.Access-Control-Allow-Credentials": "true",
+        "response.body": ""
+      }
+    },
+    "language-grader-alias": {
+      "matchCondition": {
+        "route": "/grader/language",
+        "methods": ["GET", "POST"]
+      },
+      "backendUri": "%API_HOSTNAME%/api/languageGrader"
+    },
+    "quality-grader-alias": {
+      "matchCondition": {
+        "route": "/grader/quality", 
+        "methods": ["GET", "POST"]
+      },
+      "backendUri": "%API_HOSTNAME%/api/codeQualityGrader"
+    },
+    "component-grader-alias": {
+      "matchCondition": {
+        "route": "/grader/components",
+        "methods": ["GET", "POST"]
+      },
+      "backendUri": "%API_HOSTNAME%/api/componentGrader"
+    },
+    "api-docs": {
+      "matchCondition": {
+        "route": "/docs",
+        "methods": ["GET"]
+      },
+      "responseOverrides": {
+        "response.statusCode": "200",
+        "response.headers.Content-Type": "application/json",
+        "response.body": "{\"name\":\"Companion Grader API\",\"version\":\"1.0.0\",\"description\":\"Automated QA grading system for Companion Native App\",\"endpoints\":{\"/api/languageGrader\":\"POST - Grade language implementation\",\"/api/codeQualityGrader\":\"POST - Grade code quality\",\"/api/componentGrader\":\"POST - Grade component quality\",\"/api/health\":\"GET - Health check\"},\"aliases\":{\"/grader/language\":\"Language grader alias\",\"/grader/quality\":\"Quality grader alias\",\"/grader/components\":\"Component grader alias\"}}"
+      }
+    },
+    "redirect-to-docs": {
+      "matchCondition": {
+        "route": "/api",
+        "methods": ["GET"]
+      },
+      "responseOverrides": {
+        "response.statusCode": "302",
+        "response.headers.Location": "/docs"
+      }
+    }
+  }
+}

@@ -1,0 +1,212 @@
+# ===================================
+# Companion Grader Functions - .gitignore
+# ===================================
+
+# ===== Node.js Dependencies =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ===== Environment Variables =====
+.env
+.env.local
+.env.*.local
+local.settings.json
+.funcignore
+
+# ===== Build Output =====
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+.nyc_output/
+
+# ===== Test Output =====
+test-results.json
+*-report.json
+*.lcov
+junit.xml
+test-report.html
+
+# ===== Logs =====
+*.log
+logs/
+*.log.*
+combined.log
+error.log
+
+# ===== Azure Functions Specific =====
+bin/
+obj/
+appsettings.json
+local.settings.json
+.azurefunctions/
+__blobstorage__/
+__queuestorage__/
+__azurite_db*__.json
+.python_packages/
+
+# ===== Azure Deployment =====
+.azure/
+*.PublishSettings
+*.azurePubxml
+PublishScripts/
+
+# ===== IDE/Editor Files =====
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio
+.vs/
+*.suo
+*.user ===== Operating System =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ===== Git =====
+*.orig
+*.rej
+
+# ===== Temporary Files =====
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
+
+# ===== Package Managers =====
+yarn.lock*
+pnpm-lock.yaml*
+.yarn/
+.pnp.*
+
+# ===== CI/CD Artifacts =====
+*.zip
+*.tar.gz
+*.tgz
+deploy/
+artifacts/
+releases/
+
+# ===== Security/Secrets =====
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+appsettings.*.json
+!appsettings.json
+
+# ===== Runtime =====
+*.pid
+*.seed
+*.pid.lock
+.npm
+.node_repl_history
+
+# ===== Debugging =====
+.nyc_output
+.grunt
+.lock-wscript
+.wafpickle-*
+.node_repl_history
+*.tgz
+.npm
+.eslintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# ===== TypeScript =====
+*.tsbuildinfo
+.tscache/
+
+# ===== Documentation =====
+docs/_build/
+site/
+
+# ===== Custom Project Files =====
+# Local development helpers
+local-config.json
+debug-config.json
+*.local.json
+
+# Test data
+test-data/
+mock-data/
+sample-responses/
+
+# Development scripts
+dev-scripts/
+local-tools/
+
+# ===== Azure Resource Manager =====
+*.azureauth
+.deployment
+
+# ===== GitHub Actions =====
+# Keep workflows but ignore sensitive files
+!.github/
+.github/secrets/
+
+# ===== Backup Files =====
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# ===== Archive Files =====
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ===== Miscellaneous =====
+.sass-cache/
+connect.lock
+typings/
+.nyc_output
+coverage
+*.lcov
+.eslintcache
