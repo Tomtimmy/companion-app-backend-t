@@ -6,6 +6,7 @@
     "test:integration": "jest __tests__/integration",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "lint": "eslint . --max-warnings=0",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
@@ -22,6 +23,7 @@
     "prettier": "^3.6.2"
   },
   "devDependencies": {
+    "eslint": "^9.0.0",
     "@babel/core": "^7.28.4",
     "@babel/plugin-transform-flow-strip-types": "^7.27.1",
     "@babel/preset-env": "^7.28.3",

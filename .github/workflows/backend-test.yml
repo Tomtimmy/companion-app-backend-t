@@ -28,7 +28,7 @@ jobs:
         run: npm install
 
       - name: Run ESLint (linting & code quality)
-        run: npx eslint . --max-warnings=0
+        run: ./node_modules/.bin/eslint . --max-warnings=0
 
       - name: Run Jest tests (unit + integration)
         run: npx jest --coverage --runInBand
