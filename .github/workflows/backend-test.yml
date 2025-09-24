@@ -46,7 +46,7 @@ jobs:
 
       # 🔹 Language implementation checks
       - name: Run Translation & Language Implementation Checks
-        run: npm run test:language
+        run: npm test -- functions/__tests__/unit/languageGrader.test.j
 
       - name: Generate coverage badge
         run: npx jest-coverage-badges --input coverage/lcov.info --output ./coverage/badge.svg
